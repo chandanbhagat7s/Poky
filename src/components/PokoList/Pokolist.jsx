@@ -1,35 +1,24 @@
 import { useEffect, useState } from "react";
 import PokL from "../RenderList/PokL";
-let Urls = "https://pokeapi.co/api/v2/pokemon";
+import "./Pokolist.css";
+// let Urls = ;
 
 function Pokolist() {
   const [list, setList] = useState([]);
   const [load, setLoad] = useState(true);
-  const [clicke, setClicked] = useState(true);
-
-  async function clickedNext() {
-    let data = await fetch(Urls);
-    // result of getiing all the url of pokymon
-    data = await data.json();
-    console.log(data);
-    Urls = data.next;
-    setClicked(clicke ? false : true);
-  }
-
-  async function clickedPre() {
-    let data = await fetch(Urls);
-    // result of getiing all the url of pokymon
-    data = await data.json();
-    console.log(data);
-    Urls = data.previous;
-    setClicked(clicke ? false : true);
-  }
+  const [url, setUrl] = useState("https://pokeapi.co/api/v2/pokemon");
+  const [pre, setPre] = useState(null);
+  const [next, setNext] = useState(null);
 
   useEffect(() => {
+    setLoad(true);
     async function getData() {
-      let data = await fetch(Urls);
+      let data = await fetch(url);
       // result of getiing all the url of pokymon
       data = await data.json();
+      setPre(data.previous);
+      setNext(data.next);
+      //   console.log(data);
 
       // on the base of url making calls
       let arrayData = data.results;
@@ -56,23 +45,35 @@ function Pokolist() {
       //   console.log(data);
     }
     getData();
-  }, [clicke]);
+  }, [url]);
 
   return (
     <>
-      <div className="pokolists"></div>
-      {load
-        ? "loading"
-        : list.map((p) => {
-            return <PokL name={p.name} image={p.image} key={p.id}></PokL>;
-          })}
-
+      <div className="pokolists">
+        {load
+          ? "loading"
+          : list.map((p) => {
+              return <PokL name={p.name} image={p.image} key={p.id}></PokL>;
+            })}
+      </div>
       <div className="btn">
-        <button className="next" onClick={clickedPre}>
-          Pre
+        <button
+          disabled={pre == null ? true : false}
+          className="pre"
+          onClick={() => {
+            setUrl(pre);
+          }}
+        >
+          previous
         </button>
-        <button className="pre" onClick={clickedNext}>
-          Next
+        <button
+          disabled={next == null ? true : false}
+          className="next"
+          onClick={() => {
+            setUrl(next);
+          }}
+        >
+          next
         </button>
       </div>
     </>

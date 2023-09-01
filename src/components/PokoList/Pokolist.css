@@ -1,0 +1,38 @@
+.pokolists {
+  width: auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.pokolists > * {
+  height: fit-content;
+  /* display: flex;
+  flex-direction: column; */
+  margin: 1rem;
+}
+
+.pokolists > *:hover {
+  color: #102c57;
+  background-color: #f8f0e5;
+}
+
+.pokolists > * > *:first-child {
+  font-size: 2rem;
+  text-align: center;
+  letter-spacing: 0.5rem;
+}
+
+.btn {
+  width: 50vw;
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn button {
+  padding: 1vh 2vh;
+  background-color: #102c57;
+  color: #f8f0e5;
+}
