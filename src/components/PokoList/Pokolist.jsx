@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import PokL from "../RenderList/PokL";
 import "./Pokolist.css";
+import ScrollButton from "./sc";
 // let Urls = ;
 
 function Pokolist() {
@@ -18,7 +19,7 @@ function Pokolist() {
       data = await data.json();
       setPre(data.previous);
       setNext(data.next);
-      //   console.log(data);
+      console.log(data);
 
       // on the base of url making calls
       let arrayData = data.results;
@@ -53,7 +54,9 @@ function Pokolist() {
         {load
           ? "loading"
           : list.map((p) => {
-              return <PokL name={p.name} image={p.image} key={p.id}></PokL>;
+              return (
+                <PokL name={p.name} image={p.image} key={p.id} id={p.id}></PokL>
+              );
             })}
       </div>
       <div className="btn">
