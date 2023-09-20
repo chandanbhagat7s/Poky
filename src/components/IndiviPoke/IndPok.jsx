@@ -4,6 +4,7 @@ import "./IndPok.css";
 import usePokostate from "../Hook/usePokostate";
 
 export default function IndPok() {
+  usePokostate();
   const { id } = useParams();
   const [data, setData] = useState({});
   const [lod, setLod] = useState(false);
