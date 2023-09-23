@@ -36,3 +36,9 @@
   background-color: #102c57;
   color: #f8f0e5;
 }
+
+.btn button:disabled {
+  padding: 1vh 2vh;
+  background-color: #d5d6d6;
+  color: #0c0c0c;
+}

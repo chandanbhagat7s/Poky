@@ -1,0 +1,8 @@
+.cross {
+  font-size: 7rem;
+}
+
+.details-container {
+  display: flex;
+  flex-direction: row;
+}

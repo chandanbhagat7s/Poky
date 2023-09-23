@@ -1,12 +1,15 @@
 import "./PokL.css";
-function PokL({ name, image }) {
+import { Link } from "react-router-dom";
+function PokL({ name, image, id }) {
   return (
     <>
       <div className="box">
-        <div className="name">{name}</div>
-        <div className="image">
-          <img src={image} alt={`${name}'s image`} />
-        </div>
+        <Link to={`/pokemon/${id}`}>
+          <div className="name">{name}</div>
+          <div className="image">
+            <img src={image} alt={`${name}'s image`} />
+          </div>
+        </Link>
       </div>
     </>
   );
